@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contest Leaderboard</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        td{text-align:center;}
+    </style>
+</head>
+<body>
+<table style="width:100%">
+    <tr>
+        <th>User</th>
+        <th>Contest</th>
+        <th>Score</th>
+    </tr>
+{% for a in contests.all %}
+    <tr>
+        <td>{{a.user}}</td>
+        <td>{{a.contest}}</td>
+        <td>{{a.score}}</td>
+    </tr>
+{%endfor%}
+</table>
+</body>
+</html>

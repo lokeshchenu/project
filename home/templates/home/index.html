@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CCMS User Home</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/a.css' %}">
+</head>
+<body>
+  <div class="topnav">
+    <a href="{% url 'index' %}" class="active">Home</a>
+
+      {% if user.is_authenticated %}
+
+        <a href="{% url 'logout' %}" style="float:right;">Logout</a>
+      {% else %}
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="{% url 'home:register' %}">Register</a>
+        <a href="{% url 'home:user_login' %}">Login</a>
+      {% endif %}
+  </div>
+  <div>
+      <center>
+    <h1>Welcome to CCMS !</h1>
+    {% if user.is_authenticated %}
+        <h2>Hello {{ user.username }}</h2>
+          <div>
+              <a href="online" style="color:white;text-decoration:none;background-color:green;padding:4px 4px;">Online Contests</a>
+              <a href="campus" style="color:white;text-decoration:none;background-color:green;padding:4px 4px;">Campus Contests</a>
+          </div>
+    {% else %}
+        <h2>If you're already registered, please use login<br>Else, register first</h2>
+    {% endif %}
+      </center>
+  </div>
+</body>
+</html>

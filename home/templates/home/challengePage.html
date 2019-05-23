@@ -1,0 +1,80 @@
+<!DOCTYPTE html>
+<html lang="en">
+<head>
+    <title>Challenge {{challenge.challengeName}}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/js" href="{% static 'css/ace.js' %}">
+    <style>
+        body{margin:0;}
+        .topnav {
+          overflow: hidden;
+          background-color: #333;
+        }
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 20px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #;
+          color: white;
+        }
+        .active {
+          background-color: #4CAF50;
+          overflow: hidden;
+        }
+        .but{
+          float:right;
+          color:white;text-decoration:none;background-color:green;padding:4px 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="topnav">
+    <a href="{% url 'index' %}" class="active">Home</a>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" style="float:right;">Logout</a>
+      {% else %}
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="{% url 'home:register' %}">Register</a>
+        <a href="{% url 'home:user_login' %}">Login</a>
+      {% endif %}
+</div>
+
+    <a href='../{{challenge}}' style="color:white;text-decoration:none;background-color:green;padding:2px;float:right">Challenge Leaderboard</a>
+    <div  style="padding-left:1%;padding-top:1%;">
+        <h2>{{challenge.challengeName}}</h2>
+        <h2>Problem Statement</h2>{{challenge.problemStatement}}<br>
+        <h2>Input Format</h2>{{challenge.inputFormat}}<br>
+        <h2>Constraints</h2>{{challenge.constraints}}<br>
+        <h2>Output Format</h2>{{challenge.outputFormat}}<br>
+    </div>
+    <div style="padding-left:1%;">
+        <h2>Editor</h2>
+        <form method="POST" action="storefile/{{user}}/{{challenge.challengeName}}/">
+            <select id="language" name="language" required style="float:left;">
+                {% for q in challenge.languages %}
+                    <option value={{q}}>{{q}}</option>
+                {% endfor %}
+            </select>
+            {% csrf_token %}
+            <br><br><br>
+            <textarea placeholder="Write your code here" rows = "30" cols = "75" name = "editor" id="editor" >
+
+            </textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+.login {
+  padding: 14px 16px;
+  color: white;
+  border: none;
+  font-size:20px;
+  cursor: pointer;
+  float:right;
+}
+
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #;
+  color: white;
+}
+
+.submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+.active {
+  background-color: #4CAF50;
+  overflow: hidden;
+}

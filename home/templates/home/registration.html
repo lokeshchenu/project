@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>
+        User Registration
+    </title>
+    <style>
+        .decoration{
+	    padding: 10px 13px;
+	    margin: 8px 0;
+	    border: 3px solid purple;
+	    outline: none;
+        }
+        .bord{
+                margin-left:490px;
+            margin-top:180px;
+            border: 2px solid green;
+            width:280px;
+            border-radius:20px;
+            padding:20px;
+        }
+        .topnav {
+          overflow: hidden;
+          background-color: #333;
+        }
+
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 20px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #;
+          color: white;
+        }
+        .active {
+          background-color: #4CAF50;
+          overflow: hidden;
+        }
+        body{margin:0;}
+    </style>
+</head>
+<body>
+      <div class="topnav">
+        <a href="{% url 'index' %}">Home</a>
+
+          {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" style="float:right;">Logout</a>
+          {% else %}
+            <a href="{% url 'admin:index' %}">Admin</a>
+            <a href="{% url 'home:register' %}" class="active">Register</a>
+            <a href="{% url 'home:user_login' %}">Login</a>
+          {% endif %}
+      </div>
+
+      {% if user.is_authenticated %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Register Here</h1>
+        <h3>Just fill out the form.</h3>
+
+          <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          <!--{{ profile_form.as_p }}-->
+          <input type="submit" name="" value="Register">
+        </form>
+        
+      {% endif %}
+</body>
+</html>
